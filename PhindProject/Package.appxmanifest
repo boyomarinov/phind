@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="7374BoyanMarinov.Phind" Publisher="CN=476DA15A-A261-4DDC-AA46-B6C046A29890" Version="1.0.0.5" />
+  <Properties>
+    <DisplayName>Phind</DisplayName>
+    <PublisherDisplayName>Boyan Marinov</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="PhindProject.App">
+      <VisualElements DisplayName="Phind" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Flickr based photo application that allows you to search photos by title and creator and locate places on the world map." ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="noLogos" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#dfdfdf" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+        <Extension Category="windows.fileSavePicker">
+          <FileSavePicker>
+            <SupportedFileTypes>
+              <FileType>.jpg</FileType>
+              <FileType>.png</FileType>
+            </SupportedFileTypes>
+          </FileSavePicker>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="picturesLibrary" />
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>

@@ -1,0 +1,26 @@
+﻿<Application
+    x:Class="PhindProject.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhindProject">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <x:String x:Key="AppName">Phind</x:String>
+            <x:String x:Key="BingMapsApiKey">AlNf9DM3EzmoCVHVdjVHihUut_ZhRp_wgXktl8EsBG-ZPxh6K3AAM3nESvp4H4kE</x:String>
+
+            <ControlTemplate x:Key="PushPinTemplate">
+                <Grid>
+                    <Ellipse Fill="Green" Width="15" Height="15" />
+                </Grid>
+            </ControlTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,253 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="PhindProject.Pages.HomePage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhindProject.Pages"
+    xmlns:common="using:PhindProject.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:PhindProject.ViewModels"
+    mc:Ignorable="d">
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid.DataContext>
+            <viewModels:AppViewModel />
+        </Grid.DataContext>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/background.jpg"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+        </Grid>
+
+        <Grid Name="MainHomePageGrid"
+              Grid.Row="1"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="300"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="Title"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Text="What do you want to do today?"
+                       FontSize="46"
+                       FontFamily="Segoe UI"
+                       FontWeight="Light"
+                       TextAlignment="Center">
+            </TextBlock>
+
+            <HyperlinkButton Name="GoToUserPhotosPage" 
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="0" 
+                             Click="GoToUserPhotosPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                <HyperlinkButton.Template>
+                    <ControlTemplate>
+                        <StackPanel HorizontalAlignment="Center">
+                            <Image Source="../Assets/whiteuser.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                            <TextBlock Text="Search for users"
+                                       Foreground="White"
+                                       Margin="10">
+                            </TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </HyperlinkButton.Template>
+            </HyperlinkButton>
+            <HyperlinkButton Name="GoToPhotoSearchPage" 
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="1" 
+                             Click="GoToPhotoSearchPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                <HyperlinkButton.Template>
+                    <ControlTemplate>
+                        <StackPanel HorizontalAlignment="Center">
+                            <Image Source="../Assets/whiteimages.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                            <TextBlock Text="Search for photos"
+                                       Foreground="White"
+                                       Margin="10"></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </HyperlinkButton.Template>
+
+            </HyperlinkButton>
+            <HyperlinkButton Name="GoToLocationSearchPage" 
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="2" 
+                             Click="GoToLocationSearchPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                <HyperlinkButton.Template>
+                    <ControlTemplate>
+                        <StackPanel HorizontalAlignment="Center">
+                            <Image Source="../Assets/whitemap.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                            <TextBlock Text="Browse places"
+                                       Foreground="White"
+                                       Margin="10"></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </HyperlinkButton.Template>
+            </HyperlinkButton>
+        </Grid>
+
+        <Grid x:Name="snappedHomePanel" 
+              Visibility="Collapsed"
+              Grid.Column="0"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ListView
+                    x:Name="homePageOptions"
+                    AutomationProperties.AutomationId="ResultsListView"
+                    AutomationProperties.Name="Search Results"
+                    TabIndex="1"
+                    Grid.Row="1"
+                    Margin="10,0,0,0"
+                    Padding="0,0,0,60"
+                    SelectionMode="None"
+                    IsSwipeEnabled="false"
+                    IsItemClickEnabled="True"
+                    >
+                <HyperlinkButton
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="0" 
+                             Click="GoToUserPhotosPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <StackPanel HorizontalAlignment="Center">
+                                <Image Source="../Assets/whiteuser.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                                <TextBlock Text="Search for users"
+                                       Foreground="White"
+                                       Margin="10">
+                                </TextBlock>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+                <HyperlinkButton
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="1" 
+                             Click="GoToPhotoSearchPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <StackPanel HorizontalAlignment="Center">
+                                <Image Source="../Assets/whiteimages.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                                <TextBlock Text="Search for photos"
+                                       Foreground="White"
+                                       Margin="10"></TextBlock>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+
+                </HyperlinkButton>
+                <HyperlinkButton
+                             VerticalAlignment="Top" 
+                             Grid.Row="1" 
+                             Grid.Column="2" 
+                             Click="GoToLocationSearchPageClick"
+                             HorizontalAlignment="Center"
+                             >
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <StackPanel HorizontalAlignment="Center">
+                                <Image Source="../Assets/whitemap.png"
+                                   Width="110"
+                                   Height="110"></Image>
+                                <TextBlock Text="Browse places"
+                                       Foreground="White"
+                                       Margin="10"></TextBlock>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+            </ListView>
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainHomePageGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="snappedHomePanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
